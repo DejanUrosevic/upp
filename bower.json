@@ -1,0 +1,36 @@
+{
+  "name": "ftn.upp",
+  "description": "projekat iz upp-a",
+  "main": "",
+  "keywords": [
+    "angular",
+    "activiti",
+    "doktorat"
+  ],
+  "authors": [
+    "dejansuca@gmail.com"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.2",
+    "angular-bootstrap": "^2.1.4",
+    "restangular": "^1.5.2",
+    "angularjs-datepicker": "^2.1.7",
+    "angular-local-storage": "^0.5.2",
+    "jquery": "~2.0.3",
+    "bootstrap": "~3.0.0",
+    "angular-base64": "^2.0.5",
+    "express": "^4.14.1",
+    "cors": "*"
+  }
+}
