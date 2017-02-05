@@ -43,7 +43,7 @@
 						*/
 						if(postoji == false && apc.username === "doktorant"){
 							var payload = {
-											"processDefinitionKey":"doktoratProces",
+											"processDefinitionKey":"phdzahtev",
 											"variables": [
 											      {
 											        "name":"initiator",

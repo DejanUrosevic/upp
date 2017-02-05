@@ -6,7 +6,7 @@
 
 		var hoc = this;
 
-		hoc.zadatak = Zadatak(zadId);
+		hoc.zadatak = Zadatak;
 
 		hoc.user = localStorageService.get('username');
 
@@ -15,10 +15,10 @@
 
 	 	$http.get('http://localhost:8080/activiti-rest/service/runtime/tasks?assignee=' + hoc.user)
 	 	.then(function(data){
-	 		hoc.tasks = data.data.data;
-	 	},
-	 	function(data){
-	 		alert('Neuspesno ucitavanje zadataka.');
+	 			hoc.tasks = data.data.data;
+		 	},
+		 	function(data){
+		 		alert('Neuspesno ucitavanje zadataka.');
 	 	});
 
 	 	function Zadatak(zadId){

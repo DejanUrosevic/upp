@@ -1,3 +1,3 @@
 (function(){
-	angular.module("upp.home",['ui.router']);
+	angular.module("upp.home", ['ui.router']);
 })();
