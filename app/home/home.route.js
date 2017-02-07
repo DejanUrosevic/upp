@@ -9,6 +9,9 @@
 			url: '/home',
 			views:{
 				navbar: {
+					templateUrl: "app/home/navbar.html",
+					controller : 'HomeController',
+					controllerAs : 'hoc'
 				},
 				content: {
 					templateUrl: "app/home/home.html",

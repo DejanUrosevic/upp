@@ -1,0 +1,23 @@
+--pregled taskova odredjenom korisniku-get--
+http://localhost:8080/activiti-rest/service/runtime/tasks?assignee= --za 
+
+--pokretanje procesa-post--
+http://localhost:8080/activiti-rest/service/runtime/process-instances
+{
+"processDefinitionKey":"doktoratProces",
+"variables": [
+      {
+        "name":"initiator",
+        "value":"doktorant"
+      }
+   ]
+}
+
+--provera da li clan pripada grupi-get--
+http://localhost:8080/activiti-rest/service/identity/users?memberOfGroup=studenti
+
+--pregled pokrenutih procesa-get--
+http://localhost:8080/activiti-rest/service/runtime/process-instances?processDefinitionKey=
+
+--pregled variabli za proces-get--
+http://localhost:8080/activiti-rest/service/runtime/process-instances/70197/variables

@@ -7,6 +7,8 @@
 		var hoc = this;
 
 		hoc.zadatak = Zadatak;
+		hoc.mojiZadaci = mojiZadaci;
+		hoc.zadaciZaPreuzimanje = zadaciZaPreuzimanje;
 
 		hoc.user = localStorageService.get('username');
 
@@ -23,6 +25,14 @@
 
 	 	function Zadatak(zadId){
 	 		$state.go('task', {id:zadId});
+	 	}
+
+	 	function mojiZadaci(){
+	 		$state.go('home');
+	 	}
+
+	 	function zadaciZaPreuzimanje(){
+	 		$state.go('candidateTask');
 	 	}
 	};
 })();

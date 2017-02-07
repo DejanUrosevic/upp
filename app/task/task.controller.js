@@ -26,7 +26,7 @@
 			for(var i = 0; i < tac.formProperties.length; i++){
 				if(tac.formProperties[i].writable){
 					if(tac.formProperties[i].type == 'date'){
-						var datum = {tac.formProperties[i].value | date : "MM-dd-yyyy"};
+						//var datum = {tac.formProperties[i].value | date : "MM-dd-yyyy"};
 						list.push({"id":tac.formProperties[i].id, "value":datum});
 					}
 

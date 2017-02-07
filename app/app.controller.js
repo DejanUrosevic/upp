@@ -7,6 +7,32 @@
 		var apc = this;
 
 		apc.login = LogIn;
+		apc.variables = [];
+
+		allVariables(); 
+
+		function allVariables(){
+			var auth = $base64.encode("kermit:kermit");
+			
+			$http.defaults.headers.common['Authorization'] = 'Basic ' + auth;
+	 		$http.defaults.headers.common['Accept'] = 'application/json';
+			
+			$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances?processDefinitionKey=doktoratzahtev')
+			.then(function(data){
+				for(var i = 0; i < data.data.size; i++){
+					$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances/'+ data.data.data[i].id+'/variables')
+					.then(function(dataVariables){
+						for(var j = 0; j < dataVariables.data.length; j++){
+							apc.variables.push(dataVariables.data[i]);	
+						}
+					}, function (dataVariablesError){
+						alert('Variable nisu ucitane');
+					});
+				}
+			}, function(dataError){
+				alert('Procesi nisu ucitani.');
+			});
+		};
 
 		function LogIn(){
 			var auth = $base64.encode(apc.username+":"+apc.password);
@@ -14,43 +40,31 @@
 			$http.defaults.headers.common['Authorization'] = 'Basic ' + auth;
 	 		$http.defaults.headers.common['Accept'] = 'application/json';
 
-			$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances?processDefinitionKey=doktoratProces')
+
+			$http.get('http://localhost:8080/activiti-rest/service/identity/users?memberOfGroup=studenti&id=' + apc.username)
 			.then(function(data){
-				
 				localStorageService.set("auth", auth);
 				localStorageService.set("username", apc.username);
 
 				var postoji = false;
 
-				for(var i = 0; i < data.data.size; i++){
-					$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances/'+ data.data.data[i].id+'/variables')
-					.then(function(dataVariables){
-						/*	
-						Moramo da proverimo ko je inicirao procese koji su pokrenuti, ako je inicijator isti doktorant koji se 
-						loguje ne treba ponovo da pokrecemo proces nego samo da nastavimo, ako ne postoji proces koji je pokrenu
-						doktorant koji se loguje onda treba da pokrenemo novi
-						*/
-						for(var j = 0; j < dataVariables.data.length; j++){			
-							if(dataVariables.data[j].name === "initiator"){
-								if(dataVariables.data[j].value === apc.username){
-									postoji = true;
-								}
-							}
+				if(data.data.size != 0){
+					for(var i = 0; i < apc.variables.length; i++){
+						if(apc.variables[i].name == "initiator" && apc.variables[i].value == apc.username){
+							postoji = true;
 						}
+					}
 
-						/*
-						Proces ne postoji i korisnik se ulogovao kao doktorant, pokrecemo novi proces
-						*/
-						if(postoji == false && apc.username === "doktorant"){
-							var payload = {
-											"processDefinitionKey":"phdzahtev",
-											"variables": [
-											      {
-											        "name":"initiator",
-											        "value":"doktorant"
-											      }
-											   ]
-											}
+					if(!postoji){
+						var payload = {
+										"processDefinitionKey":"doktoratzahtev",
+										"variables": [
+										      {
+										        "name":"initiator",
+										        "value":apc.username
+										      }
+										   ]
+										}
 
 							$http.post('http://localhost:8080/activiti-rest/service/runtime/process-instances', payload)
 							.then(function(data){
@@ -58,20 +72,15 @@
 							},function(data){
 								alert('Proces nije uspesno startovan.');
 							});
-						}
-					},
-					function(data){
-						alert('Nesto je poslo po zlu.');
-					});
+					} else {
+						$state.go('home');
+					}
 				}
 
 				$state.go('home');
-			},function(data){
+			}, function(errorLogin){
 				$state.go('login');
 			});
 		};
-
-		
- 		
 	};
 })();
