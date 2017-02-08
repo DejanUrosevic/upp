@@ -1,0 +1,147 @@
+[
+{
+  "id":"ostali1",
+  "firstName":"Zoki",
+  "lastName":"Zokic",
+  "email":"zoki@alfresco.org",
+  "password":"ostali1"
+},
+{
+  "id":"ostali2",
+  "firstName":"Ana",
+  "lastName":"Anic",
+  "email":"ana@alfresco.org",
+  "password":"ostali2"
+},
+{
+  "id":"prof1",
+  "firstName":"Djordje",
+  "lastName":"Djokic",
+  "email":"djordje@alfresco.org",
+  "password":"prof1"
+},
+{
+  "id":"prof2",
+  "firstName":"Filip",
+  "lastName":"Filipovic",
+  "email":"filip@alfresco.org",
+  "password":"prof2"
+},
+{
+  "id":"prof3",
+  "firstName":"Pera",
+  "lastName":"Peric",
+  "email":"pera@alfresco.org",
+  "password":"prof3"
+},
+{
+  "id":"prof4",
+  "firstName":"Mladen",
+  "lastName":"Mladic",
+  "email":"mladen@alfresco.org",
+  "password":"prof4"
+},
+{
+  "id":"prof5",
+  "firstName":"Nesa",
+  "lastName":"Nesic",
+  "email":"nesa@alfresco.org",
+  "password":"prof5"
+},
+{
+  "id":"prof6",
+  "firstName":"Sveta",
+  "lastName":"Svetic",
+  "email":"sveta@alfresco.org",
+  "password":"prof6"
+},
+{
+  "id":"doktorant",
+  "firstName":"Petar",
+  "lastName":"petrovic",
+  "email":"pera11111@gmail.org",
+  "password":"doktorant"
+},
+{
+  "id":"doktorant1",
+  "firstName":"Mirko",
+  "lastName":"Bajic",
+  "email":"mirko@alfresco.org",
+  "password":"doktorant1"
+},
+{
+  "id":"univer1",
+  "firstName":"Nikola",
+  "lastName":"Nikic",
+  "email":"nikola@alfresco.org",
+  "password":"univer1"
+},
+{
+  "id":"univer2",
+  "firstName":"Goran",
+  "lastName":"Maric",
+  "email":"goran@alfresco.org",
+  "password":"univer2"
+},
+{
+  "id":"vece1",
+  "firstName":"Zora",
+  "lastName":"Zoric",
+  "email":"zora@alfresco.org",
+  "password":"vece1"
+},
+{
+  "id":"vece2",
+  "firstName":"Ranko",
+  "lastName":"Rankovic",
+  "email":"ranko@alfresco.org",
+  "password":"vece2"
+},
+{
+  "id":"referent",
+  "firstName":"Marko",
+  "lastName":"Markovic",
+  "email":"marko@alfresco.org",
+  "password":"referent"
+},
+{
+   "id":"ftn",
+   "name":"Fakultet Tehnickih Nauka",
+   "type":"assignment"
+},
+{
+   "id":"kzoiodd",
+   "name":"Komisija za odbranu i ocenu doktorske disertacije",
+   "type":"assignment"
+},
+{
+   "id":"kzopdt",
+   "name":"Komisija za ocenu podobnosti doktoranta i teme",
+   "type":"assignment"
+},
+{
+   "id":"nastavno_vece",
+   "name":"Nastavno vece",
+   "type":"assignment"
+},
+{
+   "id":"ostali",
+   "name":"Ostali",
+   "type":"assignment"
+},
+{
+   "id":"studenti",
+   "name":"Studenti",
+   "type":"assignment"
+},
+{
+   "id":"univerzitet",
+   "name":"Univerzitet",
+   "type":"assignment"
+},
+{
+   "id":"testgroup",
+   "name":"Test group",
+   "type":"Test type"
+}
+]

@@ -12,7 +12,7 @@
 					<select ng-if="tac.komisijaPodobnost && form.id == 'pr4' || form.id == 'pr5'" ng-options="ost.id as ost.name+' '+ost.lastname for ost in tac.ostali" ng-model="form.value" ></select>
 
 					<!--Odabir mentora ili komisije za ocenu -->
-					<select ng-if="tac.odabirMentora || tac.komisijaOcena" ng-options="prof.id as prof.name+' '+prof.lastname for prof in tac.profesori" ng-model="form.value" ></select>
+					<select ng-if="tac.odabirMentora || tac.komisijaOcena" ng-options="prof.id as prof.firstName+' '+prof.lastName for prof in tac.profesori" ng-model="form.value" ></select>
 
 				</div>
 				<div class="col-md-1" ng-if="form.type == 'boolean'">

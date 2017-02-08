@@ -29,7 +29,11 @@ http://localhost:8080/activiti-rest/service/runtime/process-instances/70197/vari
 --preuzimanje forme za task-get--
 http://localhost:8080/activiti-rest/service/form/form-data?taskId=
 
---
+--pregled deployovanih procesa-get--
+http://localhost:8080/activiti-rest/service/repository/deployments
+-post za deploy novog procesa
+
+
 
 
 

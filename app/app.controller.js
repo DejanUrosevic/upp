@@ -58,7 +58,7 @@
 
 					if(!postoji){
 						var payload = {
-										"processDefinitionKey":"doktoratzahtev",
+										"processDefinitionKey":"zahtevdoktorant",
 										"variables": [
 										      {
 										        "name":"initiator",
@@ -79,6 +79,23 @@
 								alert('Proces nije uspesno startovan.');
 							});
 					} else {
+						$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances?processDefinitionKey=zahtevdoktorant')
+						.then(function(dataProcess){
+							for(var i = 0; i < data.data.size; i++){
+								$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances/'+ data.data.data[i].id+'/variables')
+								.then(function(dataVariables){
+									for(var j = 0; j < dataVariables.data.length; j++){
+										if(apc.variables[j].name == "initiator" && apc.variables[j].value == apc.username){
+											localStorageService.set("processId", data.data[i].id);
+										}
+									}
+								}, function (dataVariablesError){
+									alert('Variable nisu ucitane');
+								});
+							}
+						}, function(dataError){
+							alert('Procesi nisu ucitani.');
+						});
 						$state.go('home');
 					}
 				}

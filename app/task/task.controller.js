@@ -1,10 +1,13 @@
 (function(){
 	angular.module('upp.task').controller('TaskController', TaskController);
 
-	TaskController.$inject = ['$http', '$scope', '$state', 'localStorageService', '$stateParams'];
-	function TaskController($http, $scope, $state, localStorageService, $stateParams){
+	TaskController.$inject = ['$http', '$scope', '$state', 'localStorageService', '$stateParams', '$filter'];
+	function TaskController($http, $scope, $state, localStorageService, $stateParams, $filter){
 
 		var tac = this;
+
+		$http.defaults.headers.common['Authorization'] = 'Basic ' + localStorageService.get('auth');
+	 	$http.defaults.headers.common['Accept'] = 'application/json';
 
 		tac.user = localStorageService.get('username');
 		tac.finishTask = FinishTask;
@@ -19,9 +22,7 @@
 
 		KomisijaOcena();
 
-		$http.defaults.headers.common['Authorization'] = 'Basic ' + localStorageService.get('auth');
-	 	$http.defaults.headers.common['Accept'] = 'application/json';
-
+		
 	 	if(!angular.equals({}, $stateParams)){
 			tac.taskId = $stateParams.id;
 			$http.get('http://localhost:8080/activiti-rest/service/form/form-data?taskId=' + tac.taskId)
@@ -36,7 +37,7 @@
 			for(var i = 0; i < tac.formProperties.length; i++){
 				if(tac.formProperties[i].writable){
 					if(tac.formProperties[i].type == 'date'){
-						//var datum = {tac.formProperties[i].value | date : "MM-dd-yyyy"};
+						var datum = $filter('date')(tac.formProperties[i].value);
 						list.push({"id":tac.formProperties[i].id, "value":datum});
 					}
 
@@ -100,7 +101,7 @@
 			.then(function(data){
 				if(data.data.value == true){
 					tac.odabirMentora = true;	
-					$http.get('http:/localhost:8080/activiti-rest/service/identity/users?memberOfGroup=ftn')
+					$http.get('http://localhost:8080/activiti-rest/service/identity/users?memberOfGroup=ftn')
 					.then(function(dataProf){
 						tac.profesori = dataProf.data.data;
 					}, function(errorDataProf){
@@ -118,14 +119,14 @@
 				if(data.data.value == true){
 					tac.komisijaPodobnost = true;
 					
-					$http.get('http:/localhost:8080/activiti-rest/service/identity/users?memberOfGroup=ftn')
+					$http.get('http://localhost:8080/activiti-rest/service/identity/users?memberOfGroup=ftn')
 					.then(function(dataProf){
 						tac.profesori = dataProf.data.data;
 					}, function(errorDataProf){
 						alert('Profesori nisu ucitani.');
 					});
 
-					$http.get('http:/localhost:8080/activiti-rest/service/identity/users?memberOfGroup=ostali')
+					$http.get('http://localhost:8080/activiti-rest/service/identity/users?memberOfGroup=ostali')
 					.then(function(dataProfOstali){
 						tac.ostali = dataProfOstali.data.data;
 					}, function(errorDataProfOstali){
@@ -143,7 +144,7 @@
 				if(data.data.value == true){
 					tac.komisijaOcena = true;
 
-					$http.get('http:/localhost:8080/activiti-rest/service/identity/users?memberOfGroup=ftn')
+					$http.get('http://localhost:8080/activiti-rest/service/identity/users?memberOfGroup=ftn')
 					.then(function(dataProf){
 						tac.profesori = dataProf.data.data;
 					}, function(errorDataProf){
