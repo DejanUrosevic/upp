@@ -1,26 +1,37 @@
-<div class="container">
-	<section class="section">
-		<div class="row" ng-repeat="form in tac.formProperties">
-			<div class="col-md-3" ng-if="form.type == 'string'">
-				<p>{{form.name}}<p ng-if="form.required"></p></p>
-				<input type="input" placeholder="{{form.name}}" ng-model="form.value" value="form.value" ng-readonly="!form.writable">
+<div>	
+	<section class="section" id="profile">
+		<div class="container okvir">
+		
+			<div class="row" ng-repeat="form in tac.formProperties">
+				<div class="col-md-3" ng-if="form.type == 'string'">
+					<p>{{form.name}}<p ng-if="form.required"></p></p>
+					<input ng-if="!tac.odabirMentora && !tac.komisijaPodobnost && !tac.komisijaOcena" type="input" placeholder="{{form.name}}" ng-model="form.value" value="form.value" ng-readonly="!form.writable">
+
+					<!--Odabir komisije za podobrnos doktoranta i teme -->
+					<select ng-if="tac.komisijaPodobnost && form.id == 'pr1' || form.id == 'pr2' || form.id == 'pr3'" ng-options="prof.id as prof.name+' '+prof.lastname for prof in tac.profesori" ng-model="form.value" ></select>
+					<select ng-if="tac.komisijaPodobnost && form.id == 'pr4' || form.id == 'pr5'" ng-options="ost.id as ost.name+' '+ost.lastname for ost in tac.ostali" ng-model="form.value" ></select>
+
+					<!--Odabir mentora ili komisije za ocenu -->
+					<select ng-if="tac.odabirMentora || tac.komisijaOcena" ng-options="prof.id as prof.name+' '+prof.lastname for prof in tac.profesori" ng-model="form.value" ></select>
+
+				</div>
+				<div class="col-md-1" ng-if="form.type == 'boolean'">
+					<p>{{form.name}}</p>
+					<input type="checkbox" ng-model="form.value" value="form.value" ng-checked="form.value == 'true'" ng-disabled="!form.writable">
+				</div>
+				<div class="col-md-1" ng-if="form.type == 'enum'">
+					<p>{{form.name}}</p>
+					<select ng-options="ans.id as ans.name for ans in form.enumValues" ng-model="form.value"></select>
+				</div>
+				<div class="col-md-1" ng-if="form.type == 'date'">
+					<p>{{form.name}}</p>
+					<input type="date" ng-model="form.value">
+				</div>
 			</div>
-			<div class="col-md-1" ng-if="form.type == 'boolean'">
-				<p>{{form.name}}</p>
-				<input type="checkbox" ng-model="form.value" value="form.value" ng-checked="form.value == 'true'" ng-disabled="!form.writable">
-			</div>
-			<div class="col-md-1" ng-if="form.type == 'enum'">
-				<p>{{form.name}}</p>
-				<select ng-options="ans.id as ans.name for ans in form.enumValues" ng-model="form.value"></select>
-			</div>
-			<div class="col-md-1" ng-if="form.type == 'date'">
-				<p>{{form.name}}</p>
-				<input type="date" ng-model="form.value">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-1">
-				<button class="btn btn-primary" type="submit" ng-click="tac.finishTask()">Zavrsi zadatak</button>
+			<div class="row">
+				<div class="col-md-1">
+					<button class="btn btn-primary" type="submit" ng-click="tac.finishTask()">Zavrsi zadatak</button>
+				</div>
 			</div>
 		</div>
 	</section>

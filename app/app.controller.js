@@ -17,13 +17,13 @@
 			$http.defaults.headers.common['Authorization'] = 'Basic ' + auth;
 	 		$http.defaults.headers.common['Accept'] = 'application/json';
 			
-			$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances?processDefinitionKey=doktoratzahtev')
+			$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances?processDefinitionKey=zahtevdoktorant')
 			.then(function(data){
 				for(var i = 0; i < data.data.size; i++){
 					$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances/'+ data.data.data[i].id+'/variables')
 					.then(function(dataVariables){
 						for(var j = 0; j < dataVariables.data.length; j++){
-							apc.variables.push(dataVariables.data[i]);	
+							apc.variables.push(dataVariables.data[j]);	
 						}
 					}, function (dataVariablesError){
 						alert('Variable nisu ucitane');
@@ -52,6 +52,7 @@
 					for(var i = 0; i < apc.variables.length; i++){
 						if(apc.variables[i].name == "initiator" && apc.variables[i].value == apc.username){
 							postoji = true;
+							break;
 						}
 					}
 
@@ -62,12 +63,17 @@
 										      {
 										        "name":"initiator",
 										        "value":apc.username
+										      },
+										      {
+										      	"name":"mentorIzbor",
+										      	"value":true
 										      }
 										   ]
 										}
 
 							$http.post('http://localhost:8080/activiti-rest/service/runtime/process-instances', payload)
 							.then(function(data){
+								localStorageService.set("processId", data.data.id);
 								$state.go('home');
 							},function(data){
 								alert('Proces nije uspesno startovan.');

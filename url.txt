@@ -8,16 +8,53 @@ http://localhost:8080/activiti-rest/service/runtime/process-instances
 "variables": [
       {
         "name":"initiator",
-        "value":"doktorant"
+        "value":apc.username
+      },
+      {
+      	"name":"mentorIzbor",
+      	"value":true
       }
    ]
 }
 
 --provera da li clan pripada grupi-get--
-http://localhost:8080/activiti-rest/service/identity/users?memberOfGroup=studenti
+http://localhost:8080/activiti-rest/service/identity/users?memberOfGroup=studenti&id=
 
 --pregled pokrenutih procesa-get--
 http://localhost:8080/activiti-rest/service/runtime/process-instances?processDefinitionKey=
 
 --pregled variabli za proces-get--
 http://localhost:8080/activiti-rest/service/runtime/process-instances/70197/variables
+
+--preuzimanje forme za task-get--
+http://localhost:8080/activiti-rest/service/form/form-data?taskId=
+
+--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
