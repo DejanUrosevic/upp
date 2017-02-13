@@ -1,0 +1,19 @@
+<div>	
+	<section class="section" id="profile">
+		<div class="container okvir">
+		
+			<div class="row" ng-repeat="form in tac.formProperties">
+				<div class="col-md-3" ng-if="form.type == 'string'">
+					<p>Primedba</p></p>
+					<textarea placeholder="Mesto za primedbu" ng-ng-model="doc.primedbaText"></textarea>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-md-1">
+					<button class="btn btn-primary" type="submit" ng-click="doc.priloziPrimedbu()">Prilozi primedbu</button>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

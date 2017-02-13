@@ -9,9 +9,9 @@
 			url: '/candidate/tasks',
 			views:{
 				navbar: {
-					templateUrl: "app/home/home.html",
-					controller : 'HomeController',
-					controllerAs : 'hoc'
+					templateUrl: "app/navbar/navbar.html",
+					controller : 'NavbarController',
+					controllerAs : 'nac'
 				},
 				content: {
 					templateUrl: "app/candidate/candidate.html",
