@@ -1,15 +1,15 @@
 (function(){
 	angular.module('upp.navbar').controller('NavbarController', NavbarController);
 
-	NavbarController.$inject = ['$state', 'localStorageService'];
-	function NavbarController($state, localStorageService){
+	NavbarController.$inject = ['$http', '$state', 'localStorageService'];
+	function NavbarController($http, $state, localStorageService){
 
 		var nac = this;
 
 		nac.mojiZadaci = mojiZadaci;
 		nac.zadaciZaPreuzimanje = zadaciZaPreuzimanje;
 		nac.doktorati - dostupniDoktorati;
-		nac.logout = localStorageService;
+		nac.logout = logOut;
 
 		nac.user = localStorageService.get('username');
 
@@ -30,7 +30,7 @@
 	 	}
 
 	 	function logOut(){
-	 		localStorageService.clear();
+	 		localStorageService.clearAll();
 	 		$state.go('login');
 	 	}
 	};

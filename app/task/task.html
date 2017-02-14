@@ -3,8 +3,10 @@
 		<div class="container okvir">
 		
 			<div class="row" ng-repeat="form in tac.formProperties">
-				<div class="col-md-3" ng-if="form.type == 'string'">
+				<div class="col-md-3 col-md-offset-3" ng-if="form.type == 'string' || form.type == 'long'" >
 					<p>{{form.name}}<p ng-if="form.required"></p></p>
+				</div>
+				<div class="col-md-3" ng-if="form.type == 'string' || form.type == 'long'">
 					<input ng-if="!tac.odabirMentora && !tac.komisijaPodobnost && !tac.komisijaOcena" type="input" placeholder="{{form.name}}" ng-model="form.value" value="form.value" ng-readonly="!form.writable">
 
 					<!--Odabir komisije za podobrnos doktoranta i teme -->

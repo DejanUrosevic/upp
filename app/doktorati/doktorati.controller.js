@@ -16,7 +16,7 @@
 		Doktorati();
 
 		function Doktorati(){
-			$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances?processDefinitionKey=zahtevdoktorant')
+			$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances?processDefinitionKey=phd')
 			.then(function(data){
 				for(var i = 0; i < data.data.size; i++){
 					$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances/'+ data.data.data[i].id+'/variables')

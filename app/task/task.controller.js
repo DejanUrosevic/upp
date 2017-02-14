@@ -9,6 +9,15 @@
 		$http.defaults.headers.common['Authorization'] = 'Basic ' + localStorageService.get('auth');
 	 	$http.defaults.headers.common['Accept'] = 'application/json';
 
+	 	if(!angular.equals({}, $stateParams)){
+			tac.taskId = $stateParams.id;
+			tac.processId = $stateParams.processId;
+			$http.get('http://localhost:8080/activiti-rest/service/form/form-data?taskId=' + tac.taskId)
+			.then(function(data){
+				tac.formProperties = data.data.formProperties;
+			});
+		}
+
 		tac.user = localStorageService.get('username');
 		tac.finishTask = FinishTask;
 
@@ -21,15 +30,6 @@
 		KomisijaPodobnost();
 
 		KomisijaOcena();
-
-		
-	 	if(!angular.equals({}, $stateParams)){
-			tac.taskId = $stateParams.id;
-			$http.get('http://localhost:8080/activiti-rest/service/form/form-data?taskId=' + tac.taskId)
-			.then(function(data){
-				tac.formProperties = data.data.formProperties;
-			});
-		}
 
 		function FinishTask(){
 			var list = [];
@@ -58,9 +58,10 @@
 		};
 
 		function OdabirMentora(){
-			$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances/'+ localStorageService.get("processId") +'/variables/mentorIzbor')
+			$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances/'+ tac.processId +'/variables/mentorIzbor')
 			.then(function(data){
 				if(data.data.value == true){	
+					tac.odabirMentora = true;
 					$http.get('http://localhost:8080/activiti-rest/service/identity/users?memberOfGroup=ftn')
 					.then(function(dataProf){
 						tac.profesori = dataProf.data.data;
@@ -74,9 +75,10 @@
 		};
 
 		function KomisijaPodobnost(){
-			$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances/'+ localStorageService.get("processId") +'/variables/komisijaPodobnost')
+			$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances/'+ tac.processId +'/variables/komisijaPodobnost')
 			.then(function(data){
 				if(data.data.value == true){
+					tac.komisijaPodobnost = true;
 					$http.get('http://localhost:8080/activiti-rest/service/identity/users?memberOfGroup=ftn')
 					.then(function(dataProf){
 						tac.profesori = dataProf.data.data;
@@ -97,9 +99,10 @@
 		};	
 
 		function KomisijaOcena(){
-			$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances/'+ localStorageService.get("processId") +'/variables/komisijaOcena')
+			$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances/'+ tac.processId +'/variables/komisijaOcena')
 			.then(function(data){
 				if(data.data.value == true){
+					tac.komisijaOcena = true;
 					$http.get('http://localhost:8080/activiti-rest/service/identity/users?memberOfGroup=ftn')
 					.then(function(dataProf){
 						tac.profesori = dataProf.data.data;

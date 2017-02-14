@@ -6,7 +6,7 @@
 
 		$stateProvider
 		.state("task", {
-			url: '/task/:id',
+			url: '/process/:processId/task/:id',
 			views:{
 				navbar: {
 				},

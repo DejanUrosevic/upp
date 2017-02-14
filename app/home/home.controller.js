@@ -23,8 +23,8 @@
 		 		alert('Neuspesno ucitavanje zadataka.');
 	 	});
 
-	 	function Zadatak(zadId){
-	 		$state.go('task', {id:zadId});
+	 	function Zadatak(processId, zadId){
+	 		$state.go('task', {processId:processId,id:zadId});
 	 	}
 
 	 	function mojiZadaci(){

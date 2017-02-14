@@ -16,8 +16,8 @@
 			
 			$http.defaults.headers.common['Authorization'] = 'Basic ' + auth;
 	 		$http.defaults.headers.common['Accept'] = 'application/json';
-			
-			$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances?processDefinitionKey=zahtevdoktorant')
+
+			$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances?processDefinitionKey=phd')
 			.then(function(data){
 				for(var i = 0; i < data.data.size; i++){
 					$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances/'+ data.data.data[i].id+'/variables')
@@ -58,7 +58,7 @@
 
 					if(!postoji){
 						var payload = {
-										"processDefinitionKey":"zahtevdoktorant",
+										"processDefinitionKey":"phd",
 										"variables": [
 										      {
 										        "name":"initiator",
@@ -67,7 +67,11 @@
 										      {
 										      	"name":"mentorIzbor",
 										      	"value":true
-										      }
+										      },
+									      	  {
+									      	  	"name":"primedbe",
+									      	  	"value":[]
+									      	  }
 										   ]
 										}
 
@@ -79,23 +83,6 @@
 								alert('Proces nije uspesno startovan.');
 							});
 					} else {
-						$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances?processDefinitionKey=zahtevdoktorant')
-						.then(function(dataProcess){
-							for(var i = 0; i < data.data.size; i++){
-								$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances/'+ data.data.data[i].id+'/variables')
-								.then(function(dataVariables){
-									for(var j = 0; j < dataVariables.data.length; j++){
-										if(apc.variables[j].name == "initiator" && apc.variables[j].value == apc.username){
-											localStorageService.set("processId", data.data[i].id);
-										}
-									}
-								}, function (dataVariablesError){
-									alert('Variable nisu ucitane');
-								});
-							}
-						}, function(dataError){
-							alert('Procesi nisu ucitani.');
-						});
 						$state.go('home');
 					}
 				}
