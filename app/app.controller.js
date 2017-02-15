@@ -78,6 +78,19 @@
 							$http.post('http://localhost:8080/activiti-rest/service/runtime/process-instances', payload)
 							.then(function(data){
 								localStorageService.set("processId", data.data.id);
+								var processVariable = [
+														   {
+														      "name":"idProcess"
+														      "type":"integer"
+														      "value":data.data.id
+														   }
+														]
+								$http.post('http://localhost:8080/activiti-rest/service/runtime/process-instances/'+data.data.id+'/variables', processVariable)
+								.then(function(dodavanjeVariable){
+									console.log('variabla je uspesno dodata');
+								},function(errorDodaavnjeVariable){
+									console.log('variabla nije uspesno dodata');
+								});
 								$state.go('home');
 							},function(data){
 								alert('Proces nije uspesno startovan.');

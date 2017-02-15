@@ -6,32 +6,38 @@
 				<div class="col-md-3 col-md-offset-3" ng-if="form.type == 'string' || form.type == 'long'" >
 					<p>{{form.name}}<p ng-if="form.required"></p></p>
 				</div>
-				<div class="col-md-3" ng-if="form.type == 'string' || form.type == 'long'">
-					<input ng-if="!tac.odabirMentora && !tac.komisijaPodobnost && !tac.komisijaOcena" type="input" placeholder="{{form.name}}" ng-model="form.value" value="form.value" ng-readonly="!form.writable">
+				<div class="col-md-1" ng-if="form.type == 'string' || form.type == 'long'">
+					<input ng-if="!tac.odabirMentora && !tac.komisijaPodobnost && !tac.komisijaOcena" class="form-control" type="input" placeholder="{{form.name}}" ng-model="form.value" value="form.value" ng-readonly="!form.writable">
 
 					<!--Odabir komisije za podobrnos doktoranta i teme -->
-					<select ng-if="tac.komisijaPodobnost && form.id == 'pr1' || form.id == 'pr2' || form.id == 'pr3'" ng-options="prof.id as prof.name+' '+prof.lastname for prof in tac.profesori" ng-model="form.value" ></select>
-					<select ng-if="tac.komisijaPodobnost && form.id == 'pr4' || form.id == 'pr5'" ng-options="ost.id as ost.name+' '+ost.lastname for ost in tac.ostali" ng-model="form.value" ></select>
+					<select ng-if="tac.komisijaPodobnost && form.id == 'pr1' || form.id == 'pr2' || form.id == 'pr3'" class="form-control" ng-options="prof.id as prof.name+' '+prof.lastname for prof in tac.profesori" ng-model="form.value" ></select>
+					<select ng-if="tac.komisijaPodobnost && form.id == 'pr4' || form.id == 'pr5'" class="form-control" ng-options="ost.id as ost.name+' '+ost.lastname for ost in tac.ostali" ng-model="form.value" ></select>
 
 					<!--Odabir mentora ili komisije za ocenu -->
-					<select ng-if="tac.odabirMentora || tac.komisijaOcena" ng-options="prof.id as prof.firstName+' '+prof.lastName for prof in tac.profesori" ng-model="form.value" ></select>
+					<select ng-if="tac.odabirMentora || tac.komisijaOcena" class="form-control" ng-options="prof.id as prof.firstName+' '+prof.lastName for prof in tac.profesori" ng-model="form.value" ></select>
 
 				</div>
-				<div class="col-md-1" ng-if="form.type == 'boolean'">
+				<div class="col-md-3 col-md-offset-3" ng-if="form.type == 'boolean'">
 					<p>{{form.name}}</p>
-					<input type="checkbox" ng-model="form.value" value="form.value" ng-checked="form.value == 'true'" ng-disabled="!form.writable">
+				</div>
+				<div class="col-md-1" ng-if="form.type == 'boolean'">
+					<input type="checkbox" class="form-control" ng-model="form.value" value="form.value" ng-checked="form.value == 'true'" ng-disabled="!form.writable">
+				</div>
+				<div class="col-md-3 col-md-offset-3" ng-if="form.type == 'enum'">
+					<p>{{form.name}}</p>
 				</div>
 				<div class="col-md-1" ng-if="form.type == 'enum'">
+					<select class="form-control" ng-options="ans.id as ans.name for ans in form.enumValues" ng-model="form.value"></select>
+				</div>
+				<div class="col-md-3 col-md-offset-3" ng-if="form.type == 'date'">
 					<p>{{form.name}}</p>
-					<select ng-options="ans.id as ans.name for ans in form.enumValues" ng-model="form.value"></select>
 				</div>
 				<div class="col-md-1" ng-if="form.type == 'date'">
-					<p>{{form.name}}</p>
-					<input type="date" ng-model="form.value">
+					<input type="text" name="dateInsurance1" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="form.value" is-open="popup1.opened" datepicker-options="options"close-text="Close" required/>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-1">
+				<div class="col-md-3 col-md-offset-5">
 					<button class="btn btn-primary" type="submit" ng-click="tac.finishTask()">Zavrsi zadatak</button>
 				</div>
 			</div>

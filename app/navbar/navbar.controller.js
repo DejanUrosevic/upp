@@ -8,7 +8,7 @@
 
 		nac.mojiZadaci = mojiZadaci;
 		nac.zadaciZaPreuzimanje = zadaciZaPreuzimanje;
-		nac.doktorati - dostupniDoktorati;
+		nac.doktorati = dostupniDoktorati;
 		nac.logout = logOut;
 
 		nac.user = localStorageService.get('username');

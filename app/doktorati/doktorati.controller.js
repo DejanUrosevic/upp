@@ -34,11 +34,13 @@
 								doc.programIstrazivanja = dataVariables.data[j].value;
 							} else if (dataVariables.data[j].name == "javniUvid"){
 								doc.javniUvid = dataVariables.data[j].value;
+							} else if (dataVariables.data[j].name == "idProcess"){
+								doc.idProcess = dataVariables.data[j].value;
 							}
 						}
 
 						if(doc.javniUvid == true){
-							var object = {"idProcess":data.data.data[i].id,
+							var object = {"idProcess":doc.idProcess,
   										  "doktorant":doc.ime + " " + doc.prezime,
   										  "tema":doc.tema,
   										  "ciljIstrazivanja":doc.ciljIstrazivanja,
