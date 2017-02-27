@@ -1,6 +1,13 @@
 <div>	
 	<section class="section" id="profile">
 		<div class="container okvir">
+
+			<div class="row" nf-if="tac.primedbePregled" ng-repeat="comment in tac.comments">
+				<div class="col-md-3 col-md-offset-3">
+					<p>Primedba: </p>
+					<p>{{comment.comment}}</p>
+				</div>
+			</div>
 		
 			<div class="row" ng-repeat="form in tac.formProperties">
 				<div class="col-md-3 col-md-offset-3" ng-if="form.type == 'string' || form.type == 'long'" >

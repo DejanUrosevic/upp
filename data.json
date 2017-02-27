@@ -105,6 +105,34 @@
   "password":"referent"
 },
 {
+  "id":"sefKatedre",
+  "firstName":"Djordje",
+  "lastName":"Markovic",
+  "email":"marko@alfresco.org",
+  "password":"sefKatedre"
+},
+{
+  "id":"dekan",
+  "firstName":"Rade",
+  "lastName":"Doroslovacki",
+  "email":"marko@alfresco.org",
+  "password":"dekan"
+},
+{
+  "id":"vFakulteta",
+  "firstName":"Vece",
+  "lastName":"Fakulteta",
+  "email":"marko@alfresco.org",
+  "password":"vFakulteta"
+},
+{
+  "id":"vKatedre",
+  "firstName":"Vece",
+  "lastName":"Katedre",
+  "email":"marko@alfresco.org",
+  "password":"vKatedre"
+},
+{
    "id":"ftn",
    "name":"Fakultet Tehnickih Nauka",
    "type":"assignment"
@@ -140,8 +168,13 @@
    "type":"assignment"
 },
 {
-   "id":"testgroup",
-   "name":"Test group",
-   "type":"Test type"
+   "id":"veceFakulteta",
+   "name":"Vece fakulteta",
+   "type":"assignment"
+},
+{
+   "id":"veceKatedre",
+   "name":"Vece katedre",
+   "type":"assignment"
 }
 ]

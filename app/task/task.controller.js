@@ -25,11 +25,15 @@
 		tac.komisijaPodobnost = false;	
 		tac.komisijaOcena = false;	
 
+		tac.primedbePregled = false;
+
 		OdabirMentora();
 
 		KomisijaPodobnost();
 
 		KomisijaOcena();
+
+		PregledajPrimedbe();
 
 		function FinishTask(){
 			var list = [];
@@ -112,6 +116,21 @@
 				}
 			}, function(errorData){
 				tac.komisijaOcena = false;				
+			});
+		};
+
+		function PregledajPrimedbe(){
+			$http.get('http://localhost:8080/activiti-rest/service/runtime/process-instances/'+ tac.processId +'/variables/pregledPrimedbe')
+			.then(function(data){
+				if(data.data.value == true){
+					tac.primedbePregled = true;	
+					$http.get('http://localhost:8080/application-0.0.1-SNAPSHOT/comment/'+tac.processId)
+					.then(function(commentData){
+						tac.comments = commentData.data.data;
+					};			
+				}
+			}, function(errorData){
+				tac.primedbePregled = false;				
 			});
 		};
 	};

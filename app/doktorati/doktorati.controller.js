@@ -62,7 +62,17 @@
 		}
 
 		function PriloziPrimedbu(){
+			var payload =	{
+								"processId":doc.idProcess,
+								"comment":doc.primedbaText
+							}
 
+			$http.post('http://localhost:8080/application-0.0.1-SNAPSHOT/comment/save', payload)
+			.then(function(data){
+				$state.go('doktorati');
+			}, function(errorData){
+				alert('Niste poslali primedbu.');
+			});
 		}
 
 	};
